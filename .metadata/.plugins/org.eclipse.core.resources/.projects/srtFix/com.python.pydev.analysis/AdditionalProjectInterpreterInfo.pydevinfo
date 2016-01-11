@@ -1,0 +1,57 @@
+-- VERSION_4
+-- START DISKCACHE_2
+D:\DATA\Ziv\Programming\SRTCorrecter\.metadata\.plugins\org.eclipse.core.resources\.projects\srtFix\com.python.pydev.analysis\v2_indexcache
+srtFix.main|1435920665213096000|D:\DATA\Ziv\Programming\SRTCorrecter\srtFix\src\srtFix\main.py
+root.__init__|1431976357371123000|D:\DATA\Ziv\Programming\SRTCorrecter\srtFix\src\root\__init__.py
+root.nested.example|1435837606528697000|D:\DATA\Ziv\Programming\SRTCorrecter\srtFix\src\root\nested\example.py
+srtFix.testMain|1435919135101579000|D:\DATA\Ziv\Programming\SRTCorrecter\srtFix\src\srtFix\testMain.py
+srtFix.__init__|1432471226547102000|D:\DATA\Ziv\Programming\SRTCorrecter\srtFix\src\srtFix\__init__.py
+root.nested.__init__|1431976357376124000|D:\DATA\Ziv\Programming\SRTCorrecter\srtFix\src\root\nested\__init__.py
+srtFix.getArgs|1435905639543677000|D:\DATA\Ziv\Programming\SRTCorrecter\srtFix\src\srtFix\getArgs.py
+-- END DISKCACHE
+-- START DICTIONARY
+9
+5=fixParams
+8=CLIError.__init__
+2=srtFix.main
+6=CLIError
+3=root.nested.example
+9=Test
+4=srtFix.testMain
+7=fixParams.__init__
+1=srtFix.getArgs
+-- END DICTIONARY
+-- START TREE 1
+15
+__a|2|__all__!11@__all__!19@
+__d|2|__date__!19@__date__!11@
+__u|2|__updated__!19@__updated__!11@
+__v|2|__version__!11@__version__!19@
+cal|2|calculateOffset!18@calculateOffset!26@
+cli|1|CLIError!9@
+con|2|convertSectoSubTime!18@convertSubTimetoSec!18@
+cor|1|correctTime!18@
+deb|2|DEBUG!11@DEBUG!19@
+fix|1|fixParams!9@
+get|7|getParams!26@getMovieLen!26@getNextSub!18@getMovieLenFromStream!18@getNextSub!26@getMovieLenFromFile!18@getParams!10@
+mai|1|main!18@
+pro|4|processFile!18@PROFILE!19@processFile!26@PROFILE!11@
+tes|3|TESTRUN!11@Test!33@TESTRUN!19@
+zzz|1|zzzzconvertSubTimetoSec!26@
+-- END TREE
+-- START TREE 2
+13
+__i|2|__init__!5&10@__init__!6&10@
+__s|1|__str__!6&10@
+__u|1|__unicode__!6&10@
+dir|1|direction!7&11@
+end|1|endDiff!7&11@
+fna|1|fname!7&11@
+mov|1|movieLen!7&11@
+msg|1|msg!8&11@
+out|1|outfname!7&11@
+set|1|setUp!9&34@
+sta|1|startDiff!7&11@
+tea|1|tearDown!9&34@
+tes|8|test_correctTime2!9&34@test_convertSubTimetoSec!9&34@test_getNextSub!9&34@test_calculateOffset!9&34@test_correctTime1!9&34@test_convertSectoSubTime2!9&34@test_correctTime3!9&34@test_convertSectoSubTime1!9&34@
+-- END TREE

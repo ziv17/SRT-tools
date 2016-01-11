@@ -1,0 +1,45 @@
+'''
+Created on May 18, 2015
+
+@author: Ziv
+'''
+import os
+import argparse
+
+def getParams():
+    "get command line parameters"
+    parser=argparse.ArgumentParser(prog="srtFix", description="Adjust subtitles timing")
+    parser.add_argument('direction', choices=['movie-before','movie-after'])
+    parser.add_argument('-start-dif', type=float, required=True, 
+                        help='difference at start of movie in seconds, e.g. 2.4')
+    parser.add_argument('-end-dif', type=float, 
+                        help='difference at END of movie in seconds, e.g. 2.4.')
+    parser.add_argument('fileName')
+    args=parser.parse_args()
+    print (args.fileName)
+    # checking the arguments
+    if not os.path.exists(args.fileName):
+        print('%(file)s: file does not exist' % {'file':args.fileName})
+        args=None
+    return args
+    
+def calculateOffset(args):
+    "Calculates the offsets depending on the time of the entry"
+    shiftValues[end-dif] = args.start-dif if args.end-dif == None else args.end-dif
+        
+    if args.direction == 'movie-before': 
+        "subtitle needs to be earlier, will negate the values"
+        shiftValues['start-dif'] = -args.start-dif
+    else:
+        shiftValues['start-dif'] = -args.start-dif
+    return shiftValues
+
+def processFile(shiftValues):
+    return True
+    
+if __name__ == '__main__':
+    args = getParams()
+    shiftValues = calculateOffset(args)
+    processFile(shiftValues)
+    print (args)
+    print (type(args))
