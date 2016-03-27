@@ -146,13 +146,14 @@ def processFile(args):
     
 def main(argv=None): # IGNORE:C0111
     program_name = os.path.basename(sys.argv[0])
-    print ("cwd:%s. " % os.getcwd())
     try:
         args = getParams(argv)
-        print ("file:%s, %s, Start diff:%d, End diff: %s\n" % (args.fname,
-               args.direction, args.startDiff, args.endDiff))
+        if DEBUG or TESTRUN:
+            print ("file:%s, %s, Start diff:%d, End diff: %s\n" % (args.fname,
+                    args.direction, args.startDiff, args.endDiff))
         args = calculateOffset(args)
         processFile(args)
+        print ("Done.")
         return 0
     except KeyboardInterrupt:
         ### handle keyboard interrupt ###
