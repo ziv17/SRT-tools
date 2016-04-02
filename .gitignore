@@ -1,0 +1,4 @@
+#
+.metadata/
+*.srt
+__pycache__/

@@ -1,8 +1,0 @@
-MODULES_MANAGER_V2
-root.__init__|D:\DATA\Ziv\Programming\SRTCorrecter\srtFix\src\root\__init__.py
-root.nested.__init__|D:\DATA\Ziv\Programming\SRTCorrecter\srtFix\src\root\nested\__init__.py
-root.nested.example|D:\DATA\Ziv\Programming\SRTCorrecter\srtFix\src\root\nested\example.py
-srtFix.__init__|D:\DATA\Ziv\Programming\SRTCorrecter\srtFix\src\srtFix\__init__.py
-srtFix.getArgs|D:\DATA\Ziv\Programming\SRTCorrecter\srtFix\src\srtFix\getArgs.py
-srtFix.main|D:\DATA\Ziv\Programming\SRTCorrecter\srtFix\src\srtFix\main.py
-srtFix.testMain|D:\DATA\Ziv\Programming\SRTCorrecter\srtFix\src\srtFix\testMain.py
