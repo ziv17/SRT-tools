@@ -57,8 +57,11 @@ class TkFileDialogExample(tk.Frame):
     tk.Entry(self, textvariable=self.endDiff).grid(row=1,column=1,sticky=tk.W+tk.E)
     self.dirButton.grid(row=0,column=2,sticky=tk.W+tk.E)
     tk.Button(self, text='Choose file', command=self.askfilename).grid(row=1,column=2,sticky=tk.W+tk.E)
+    # Translate
+    tk.Button(self, text='Translate',command=self.translate).grid(row=2,column=0,sticky=tk.E+tk.W)
+
     tk.Button(self, text='Go', command=self.go).grid(row=0,column=3, rowspan=2,sticky=tk.W+tk.S+tk.E+tk.N)
-    self.log.grid(row=2,column=0,columnspan=4)
+    self.log.grid(row=3,column=0,columnspan=4)
 
 #     tk.Button(self, text='askopenfile', command=self.askopenfile).pack(**button_opt)
 #     tk.Button(self, text='asksaveasfile', command=self.asksaveasfile).pack(**button_opt)
@@ -90,6 +93,9 @@ class TkFileDialogExample(tk.Frame):
   def dirToggle(self):
     self.dirVal = 'movie-before' if self.dirVal == 'movie-after' else 'movie-after'
     self.dirButton['text']=self.dirVal
+  
+  def translate(self):
+    self.toScreenLog('translate pressed')
   
   def toScreenLog(self, s):
     self.log.insert(tk.END, '\n'+s)
