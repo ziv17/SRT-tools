@@ -1,4 +1,7 @@
 #
-.metadata/
+#.metadata/
+.mylyn
+.plugins
 *.srt
 __pycache__/
+*.log
