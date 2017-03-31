@@ -18,7 +18,7 @@ class Translator(object):
     transParams = {'client':'t','sl':'en','tl':'iw','hl':'iw','dt':'at','dt':'bd','dt':'ex','dt':'ld','dt':'md','dt':'qca','dt':'rw','dt':'rm','dt':'ss','dt':'t','ie':'UTF-8','oe':'UTF-8','otf':'1','ssel':'0','tsel':'0','kc':'7','q':'how to translate','tk':'293149.141394'}
     trnJSFile = "d:/DATA/Ziv/Programming/trials/trans-api/trn.js"
     
-    def __init__(self, fromLang, toLang, toTrans):
+    def __init__(self, fromLang='en', toLang='iw', toTrans=''):
         '''
         Constructor
         '''
@@ -27,6 +27,8 @@ class Translator(object):
         self.transParams['tl']=toLang
         self.transParams['hl']=toLang
         self.transParams['q']=toTrans
+        self.tl=toLang
+        self.fl=fromLang
     
     def GetTranslateGoogleAPI(self):
         url_parts = list(urllib.parse.urlparse(self.transURL))
@@ -40,18 +42,23 @@ class Translator(object):
         res = urllib.request.urlopen(Translate.origURL).read()  # @UndefinedVariable
         print(res)
   
-    def TraslateNodeAPI(self, fl, tl, toTrans):
-      res = subprocess.check_output(["node", Translator.trnJSFile, fl, tl, toTrans],shell=True)   # @UndefinedVariable
-      print(res)
-      print("{}->{}\n{}->{}".format(fl, tl, toTrans,res))
-      return res.decode('UTF-8')
+    def TraslateNodeAPI(self, toTrans):
+      return self.TraslateNodeAPI1(self.fl, self.tl, toTrans)
+    
+    def TraslateNodeAPI1(self, fl, tl, toTrans):
+      rb = subprocess.check_output(["node", Translator.trnJSFile, fl, tl, toTrans],shell=True)   # @UndefinedVariable
+      #print(rb)
+      rs=rb.decode('UTF-8','replace')
+      #print("{}->{}\n{}->{}or{}".format(fl, tl, toTrans,rb,rs))
+      return rs
   
     def tst(self, fl, tl, toTrans):
       res = subprocess.check_output(["node", Translator.trnJSFile, fl, tl, toTrans],shell=True)   # @UndefinedVariable
   
 if __name__ == '__main__':
-  r=Translator('en', 'iw', "I am happy")
-  print (r.TraslateNodeAPI('en', 'iw', "I am happy"))
+  r=Translator('en', 'de', "I am happy")
+  rb=r.TraslateNodeAPI1('en', 'iw', "I am happy")
+  print (rb)
   #r.tst('en', 'de', "I am happy")
   
 #   url = "http://stackoverflow.com/search" #/* ?q=myquestion" */
