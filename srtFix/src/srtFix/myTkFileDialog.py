@@ -11,6 +11,7 @@ from tkinter.scrolledtext import ScrolledText
 from srtFix.processFile import processFile
 from getArgs import fixParams
 from srtFix.processFile import calculateOffset
+from srtFix.processFile import translateFile
 from srtFix.translate import Translator
 
 class TkFileDialogExample(tk.Frame):
@@ -96,9 +97,11 @@ class TkFileDialogExample(tk.Frame):
     self.dirButton['text']=self.dirVal
   
   def translate(self):
-    r=Translator()
-    res=r.TraslateNodeAPI(self.startDiff.get())
-    self.toScreenLog('translate pressed:{}'.format(res))
+    params=fixParams(f=self.filename)
+    translateFile(params)
+#     r=Translator()
+#     res=r.TraslateNodeAPI(self.startDiff.get())
+    self.toScreenLog('translated:{}'.format(params.outfname))
   
   def toScreenLog(self, s):
     self.log.insert(tk.END, '\n'+s)
