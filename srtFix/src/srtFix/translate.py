@@ -51,6 +51,7 @@ class Translator(object):
     def TraslateNodeAPI1(self, fl, tl, toTrans):
       try:
         rs=None
+        if toTrans[0] == "-": toTrans='\\'+toTrans
         rb = subprocess.check_output(["node", Translator.trnJSFile, fl, tl, toTrans],shell=True)   # @UndefinedVariable
         rs=rb.decode('utf_8', 'replace')
       except subprocess.CalledProcessError as e:
