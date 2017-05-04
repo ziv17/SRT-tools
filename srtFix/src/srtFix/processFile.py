@@ -19,6 +19,7 @@ import sys
 from srtFix.translate import Translator
 from getArgs import getParams
 from parse import parse
+import codecs
 
 __all__ = []
 __version__ = 0.1
@@ -130,7 +131,6 @@ def processFile(args):
       (num, time, text) = getNextSub(inFile)
     inFile.close()
     outFile.close()
-      
   except:
     print("Unexpected error:", sys.exc_info()[0])
     print("out file name:%s\n" % args.outfname)
@@ -141,23 +141,27 @@ def translateFile(args):
     r=Translator()
     "Set translated file name"
     args.outfname	=args.fname[:-4]+'.heb'+args.fname[-4:]
-    inFile=open(args.fname, mode='r')
-    outFile=open(args.outfname, mode='w')
+    inFile= open(args.fname,   mode='r', encoding='utf_8')
+    outFile=open(args.outfname,mode='w', encoding='utf_8')
     (num, time, text)=getNextSub(inFile)
     while num is not None:
-      tText=r.TraslateNodeAPI(text)
-      print("{}->{}\n".format(text, tText))
+      tText=''
+      for line in text.splitlines():
+        tText+=r.TraslateNodeAPI(line)
+      #print("{}->{}\n".format(text, tText))
       outFile.write(num+'\n'+time+'\n')
-      outFile.write(tText+'\n')
+      outFile.write(tText)
       outFile.write(text+'\n\n')
       (num, time, text)=getNextSub(inFile)
-    inFile.close()
-    outFile.close()
 
-  except:
+  except Exception as e:
+    print(e)
     print("Unexpected error:", sys.exc_info()[0])
     print("out file name:%s\n"%args.outfname)
     raise
+  finally:
+    inFile.close()
+    outFile.close()
 
   return True
   
