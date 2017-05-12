@@ -146,8 +146,9 @@ def translateFile(args):
     (num, time, text)=getNextSub(inFile)
     while num is not None:
       tText=''
-      for line in text.splitlines():
-        tText+=r.TraslateNodeAPI(line)
+#      for line in text.splitlines():
+#        tText+=r.TraslateNodeAPI(line)
+      tText=r.TraslateNodeAPI(text.replace('\n', ' '))
       #print("{}->{}\n".format(text, tText))
       outFile.write(num+'\n'+time+'\n')
       outFile.write(tText)
