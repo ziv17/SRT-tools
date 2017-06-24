@@ -116,14 +116,15 @@ class TkFileDialogExample(tk.Frame):
       #pack paramaters and process file
       sd=float(self.startDiff.get())
       #r=parse('{n:d}',self.endDiff.get())
-      ed= None if None == self.endDiff.get() else float(self.endDiff.get()) 
+      ed= None if None == self.endDiff.get() or '' == self.endDiff.get() else float(self.endDiff.get()) 
       params=fixParams(f=self.filename,s=sd,e=ed, d=self.dirVal)
       self.toScreenLog("startDiff:{0},endDiff:{1},dir:{2},file:{3}".format(params.startDiff,params.endDiff,params.direction,params.fname))
       calculateOffset(params)
       #self.toScreenLog("movie len:{0},out file name:{1}".format(params.movieLen,params.outfname))
       processFile(params)
       self.toScreenLog("Done. Output file:%s" % params.outfname)
-    except ValueError:
+    except ValueError as e:
+      print("Exception in go:{1}\n",str(e))
       self.toScreenLog('Enter a number in the Diff fields')
     except IOError:
       e=sys.exc_info()[0]

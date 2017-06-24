@@ -67,34 +67,35 @@ def convertSectoSubTime(sec):
     return res
 
 def getMovieLenFromFile(fileName):
-    with open(fileName, mode='r') as f:
+    with open(fileName, mode='r', encoding='utf_8',errors='replace') as f:
         return getMovieLenFromStream(f)
     
 def getMovieLenFromStream(f):
     try:
-        if f.seekable():
-            f.seek(0, 2)
-            l=f.tell()
-            f.seek(l-200, 0)
-        else:
-            print ('cannot seek file')
-    except:
-        print("Unexpected error:", sys.exc_info()[0])
-        raise
-    f.readline()  # flush till next line
-    "find a separating line - an empty line"
-    for line in f:
-        if line=='\n': break
-    else: print('empty line not found')
-    # get the next sub
-    (num, time, text)=getNextSub(f)
-    # get the last sub
-    (a, b, c)=getNextSub(f)
-    while a is not None:
-        (num, time, text)=(a, b, c)
-        (a, b, c)=getNextSub(f)
-    # now we have the last sub
-    return convertSubTimetoSec(time[0:12])
+      if f.seekable():
+          f.seek(0, 2)
+          l=f.tell()
+          f.seek(l-200, 0)
+      else:
+          print ('cannot seek file')
+      f.readline()  # flush till next line
+      "find a separating line - an empty line"
+      for line in f:
+          if line=='\n': break
+      else: print('empty line not found')
+      # get the next sub
+      (num, time, text)=getNextSub(f)
+      # get the last sub
+      (a, b, c)=getNextSub(f)
+      while a is not None:
+          (num, time, text)=(a, b, c)
+          (a, b, c)=getNextSub(f)
+      # now we have the last sub
+      return convertSubTimetoSec(time[0:12])
+    except Exception as e:
+      print("Exception in getMovieLenFromStream:{0}\n".format(str(e)))
+      print("Unexpected error:", sys.exc_info()[0])
+      raise
 
 def calculateOffset(params):
   "Handle case were endDiff wasn't specified"
@@ -119,8 +120,8 @@ def processFile(args):
   try:
     "Set fixed file name"
     args.outfname  = args.fname[:-4]+'.fixed'+args.fname[-4:]
-    inFile = open(args.fname, mode='r')
-    outFile= open(args.outfname, mode='w')
+    inFile = open(args.fname,    mode='r', encoding='utf_8',errors='replace')
+    outFile= open(args.outfname, mode='w', encoding='utf_8',errors='replace')
     (num, time, text) = getNextSub(inFile)
     while num is not None:
       t1=correctTime(args, time[:12]) 
@@ -131,7 +132,8 @@ def processFile(args):
       (num, time, text) = getNextSub(inFile)
     inFile.close()
     outFile.close()
-  except:
+  except  Exception as e:
+    print("Exception in getMovieLenFromStream:{0}\n".format(str(e)))
     print("Unexpected error:", sys.exc_info()[0])
     print("out file name:%s\n" % args.outfname)
     raise
